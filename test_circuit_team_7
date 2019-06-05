@@ -1,0 +1,185 @@
+// Generated for: spectre
+// Generated on: Jun  5 15:04:31 2019
+// Design library name: NeuralSpikeDetector
+// Design cell name: CompleteCircuit
+// Design view name: schematic
+simulator lang=spectre
+global 0
+include "/w/apps2/public.2/tech/cadence/90nm/gpdk090_v4.6/libs.oa22/gpdk090/../../models/spectre/gpdk090.scs" section=NN
+
+// Library name: NeuralSpikeDetector
+// Cell name: INVX1
+// View name: schematic
+subckt INVX1 A Y inh_VDD inh_VSS
+    mp0 (Y A inh_VDD inh_VDD) gpdk090_pmos1v w=(325n) l=100n as=91f ad=91f \
+        ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mn0 (Y A inh_VSS inh_VSS) gpdk090_nmos1v w=(215n) l=100n as=79.1f \
+        ad=79.1f ps=1.16u pd=1.16u m=(1)*(1) simM=(1)*(1)
+ends INVX1
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: MX_CUSTOM
+// View name: schematic
+subckt MX_CUSTOM A B F GND NS S VDD
+    NM1 (F NS B GND) gpdk090_nmos1v w=(240n) l=100n as=67.2f ad=67.2f \
+        ps=1.04u pd=1.04u m=(1)*(1) simM=(1)*(1)
+    NM0 (F S A GND) gpdk090_nmos1v w=(240n) l=100n as=67.2f ad=67.2f \
+        ps=1.04u pd=1.04u m=(1)*(1) simM=(1)*(1)
+    PM1 (F S B VDD) gpdk090_pmos1v w=(360n) l=100n as=100.8f ad=100.8f \
+        ps=1.28u pd=1.28u m=(1)*(1) simM=(1)*(1)
+    PM0 (F NS A VDD) gpdk090_pmos1v w=(360n) l=100n as=100.8f ad=100.8f \
+        ps=1.28u pd=1.28u m=(1)*(1) simM=(1)*(1)
+ends MX_CUSTOM
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: InvertingStage
+// View name: schematic
+subckt InvertingStage A0 A1 A2 A3 A4 A5 Aout0 Aout1 Aout2 Aout3 Aout4 B0 \
+        B1 B2 B3 B4 Bout0 Bout1 Bout2 Bout3 Bout4 Cin GND VDD
+    I30 (net061 Cin VDD GND) INVX1
+    I24 (A5 net061 VDD GND) INVX1
+    I10 (A4 net38 VDD GND) INVX1
+    I9 (A3 net37 VDD GND) INVX1
+    I8 (A2 net36 VDD GND) INVX1
+    I7 (A1 net35 VDD GND) INVX1
+    I6 (A0 net34 VDD GND) INVX1
+    I4 (B4 Bout4 VDD GND) INVX1
+    I3 (B3 Bout3 VDD GND) INVX1
+    I2 (B2 Bout2 VDD GND) INVX1
+    I1 (B1 Bout1 VDD GND) INVX1
+    I0 (B0 Bout0 VDD GND) INVX1
+    I28 (net34 A0 Aout0 GND net061 A5 VDD) MX_CUSTOM
+    I23 (net38 A4 Aout4 GND net061 A5 VDD) MX_CUSTOM
+    I26 (net36 A2 Aout2 GND net061 A5 VDD) MX_CUSTOM
+    I27 (net35 A1 Aout1 GND net061 A5 VDD) MX_CUSTOM
+    I25 (net37 A3 Aout3 GND net061 A5 VDD) MX_CUSTOM
+ends InvertingStage
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: NAND2X2
+// View name: schematic
+subckt NAND2X2 A B Y inh_VDD inh_VSS
+    mp1 (Y B inh_VDD inh_VDD) gpdk090_pmos1v w=(1.3u) l=100n as=364f \
+        ad=364f ps=1.86u pd=1.86u m=(1)*(1) simM=(1)*(1)
+    mp0 (Y A inh_VDD inh_VDD) gpdk090_pmos1v w=(1.3u) l=100n as=364f \
+        ad=364f ps=1.86u pd=1.86u m=(1)*(1) simM=(1)*(1)
+    mn1 (Y B n0 inh_VSS) gpdk090_nmos1v w=(860n) l=100n as=240.8f \
+        ad=240.8f ps=1.42u pd=1.42u m=(1)*(1) simM=(1)*(1)
+    mn0 (n0 A inh_VSS inh_VSS) gpdk090_nmos1v w=(860n) l=100n as=240.8f \
+        ad=240.8f ps=1.42u pd=1.42u m=(1)*(1) simM=(1)*(1)
+ends NAND2X2
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: NAND2X4
+// View name: schematic
+subckt NAND2X4 A B Y inh_VDD inh_VSS
+    mp1 (Y B inh_VDD inh_VDD) gpdk090_pmos1v w=(2.6u) l=100n as=728f \
+        ad=728f ps=3.16u pd=3.16u m=(1)*(1) simM=(1)*(1)
+    mp0 (Y A inh_VDD inh_VDD) gpdk090_pmos1v w=(2.6u) l=100n as=728f \
+        ad=728f ps=3.16u pd=3.16u m=(1)*(1) simM=(1)*(1)
+    mn1 (Y B n0 inh_VSS) gpdk090_nmos1v w=(1.72u) l=100n as=481.6f \
+        ad=481.6f ps=2.28u pd=2.28u m=(1)*(1) simM=(1)*(1)
+    mn0 (n0 A inh_VSS inh_VSS) gpdk090_nmos1v w=(1.72u) l=100n as=481.6f \
+        ad=481.6f ps=2.28u pd=2.28u m=(1)*(1) simM=(1)*(1)
+ends NAND2X4
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: NAND2X1
+// View name: schematic
+subckt NAND2X1 A B Y inh_VDD inh_VSS
+    mp1 (Y B inh_VDD inh_VDD) gpdk090_pmos1v w=(325n) l=100n as=91f ad=91f \
+        ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mp0 (Y A inh_VDD inh_VDD) gpdk090_pmos1v w=(325n) l=100n as=91f ad=91f \
+        ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mn1 (Y B n0 inh_VSS) gpdk090_nmos1v w=(215n) l=100n as=79.1f ad=79.1f \
+        ps=1.16u pd=1.16u m=(1)*(1) simM=(1)*(1)
+    mn0 (n0 A inh_VSS inh_VSS) gpdk090_nmos1v w=(215n) l=100n as=79.1f \
+        ad=79.1f ps=1.16u pd=1.16u m=(1)*(1) simM=(1)*(1)
+ends NAND2X1
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: NOR2X1
+// View name: schematic
+subckt NOR2X1 A B Y inh_VDD inh_VSS
+    mp1 (Y B net41 inh_VDD) gpdk090_pmos1v w=(325n) l=100n as=91f ad=91f \
+        ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mp0 (net41 A inh_VDD inh_VDD) gpdk090_pmos1v w=(325n) l=100n as=91f \
+        ad=91f ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mn1 (Y B inh_VSS inh_VSS) gpdk090_nmos1v w=(215n) l=100n as=79.1f \
+        ad=79.1f ps=1.16u pd=1.16u m=(1)*(1) simM=(1)*(1)
+    mn0 (Y A inh_VSS inh_VSS) gpdk090_nmos1v w=(215n) l=100n as=79.1f \
+        ad=79.1f ps=1.16u pd=1.16u m=(1)*(1) simM=(1)*(1)
+ends NOR2X1
+// End of subcircuit definition.
+
+// Library name: gsclib090
+// Cell name: NAND2X1
+// View name: schematic
+subckt NAND2X1_schematic A B Y inh_VDD inh_VSS
+    mp1 (Y B inh_VDD inh_VDD) gpdk090_pmos1v w=(650n) l=100n as=182f \
+        ad=182f ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mp0 (Y A inh_VDD inh_VDD) gpdk090_pmos1v w=(650n) l=100n as=182f \
+        ad=182f ps=1.21u pd=1.21u m=(1)*(1) simM=(1)*(1)
+    mn1 (Y B n0 inh_VSS) gpdk090_nmos1v w=(430n) l=100n as=120.4f \
+        ad=120.4f ps=990n pd=990n m=(1)*(1) simM=(1)*(1)
+    mn0 (n0 A inh_VSS inh_VSS) gpdk090_nmos1v w=(430n) l=100n as=120.4f \
+        ad=120.4f ps=990n pd=990n m=(1)*(1) simM=(1)*(1)
+ends NAND2X1_schematic
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: adderModule
+// View name: schematic
+subckt adderModule A0 A1 A2 A3 A4 B0 B1 B2 B3 B4 Cin GND Out VDD
+    I23 (net29 net25 net30 VDD GND) NAND2X2
+    I24 (net30 net26 Out VDD GND) NAND2X4
+    I14 (net40 net25 VDD GND) INVX1
+    I13 (net39 net21 VDD GND) INVX1
+    I12 (net38 net16 VDD GND) INVX1
+    I11 (net37 net31 VDD GND) INVX1
+    I10 (net36 net35 VDD GND) INVX1
+    I21 (net27 net21 net28 VDD GND) NAND2X1
+    I20 (net24 net18 net27 VDD GND) NAND2X1
+    I19 (net22 net16 net24 VDD GND) NAND2X1
+    I18 (net34 net32 net22 VDD GND) NAND2X1
+    I17 (net20 net31 net34 VDD GND) NAND2X1
+    I16 (net19 net17 net20 VDD GND) NAND2X1
+    I15 (net35 Cin net19 VDD GND) NAND2X1
+    I9 (A4 B4 net26 VDD GND) NAND2X1
+    I8 (A3 B3 net23 VDD GND) NAND2X1
+    I7 (A2 B2 net18 VDD GND) NAND2X1
+    I6 (A1 B1 net32 VDD GND) NAND2X1
+    I5 (A0 B0 net17 VDD GND) NAND2X1
+    I4 (A4 B4 net40 VDD GND) NOR2X1
+    I3 (A3 B3 net39 VDD GND) NOR2X1
+    I2 (A2 B2 net38 VDD GND) NOR2X1
+    I1 (A1 B1 net37 VDD GND) NOR2X1
+    I0 (A0 B0 net36 VDD GND) NOR2X1
+    I22 (net28 net23 net29 VDD GND) NAND2X1_schematic
+ends adderModule
+// End of subcircuit definition.
+
+// Library name: NeuralSpikeDetector
+// Cell name: CompleteCircuit
+// View name: schematic
+I0 (X0 X1 X2 X3 X4 X5 net12 net11 net10 net9 net8 T0 T1 T2 T3 T4 net6 net7 \
+        net1 net2 net3 net4 GND VDD) InvertingStage
+I1 (net12 net11 net10 net9 net8 net6 net7 net1 net2 net3 net4 GND OUT VDD) \
+        adderModule
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 sensfile="../psf/sens.output" \
+    checklimitdest=psf 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub

@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      millerj
+HostName                       eeapps04.seas.ucla.edu
+ProcessIdentifier              59339
+ProcessCreationTime_UTC        1559773421
+ProcessCreationTime_Readable   Wed Jun  5 15:23:41 2019 PDT
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /w/home.14/ee/ugrad/millerj/ee115c/Neural-Spike-Detecter/NeuralSpikeDetector/Abs_Value_Detector/schematic/sch.oa.cdslck
+TimeEditLocked                 Wed Jun  5 15:43:59 2019 PDT
